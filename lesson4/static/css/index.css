@@ -1,0 +1,101 @@
+/* 基礎樣式 */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* 導覽列樣式 */
+.navbar {
+    background-color: #ddd; /* 與圖片相符的淺灰色 */
+    padding: 10px 0;
+}
+
+.navbar-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar-brand {
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+.navbar-menu {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar-menu li {
+    margin-left: 20px;
+}
+
+.navbar-menu a {
+    text-decoration: none;
+    color: #333;
+    padding: 5px 10px;
+}
+
+.navbar-menu a:hover {
+    background-color: #ccc;
+}
+
+/* 手機選單按鈕 */
+.menu-button {
+    display: none; /* 初始隱藏 */
+    font-size: 1.5em;
+    cursor: pointer;
+}
+
+/* 手機選單 */
+.mobile-menu {
+    display: none;
+    position: absolute;
+    top: 60px; /* 根據導覽列高度調整 */
+    right: 0;
+    background-color: #ddd;
+    width: 100%;
+    text-align: center;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 1000; /* 確保在其他元素之上 */
+}
+
+.mobile-menu li {
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+}
+
+.mobile-menu li:last-child {
+    border-bottom: none;
+}
+
+.mobile-menu a {
+    text-decoration: none;
+    color: #333;
+}
+
+/* 響應式設計 */
+@media (max-width: 768px) {
+    .navbar-menu {
+        display: none; /* 手機上隱藏桌面選單 */
+    }
+
+    .menu-button {
+        display: block; /* 手機上顯示選單按鈕 */
+    }
+}
+
+/* 主要內容區域樣式 */
+.main-content {
+    padding: 20px;
+}

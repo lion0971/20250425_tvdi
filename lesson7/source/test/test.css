@@ -1,0 +1,401 @@
+/* --- 基本設定與變數 --- */
+:root {
+    --primary-green: #27ae60;
+    /* 徽章綠色 */
+    --primary-orange: #f39c12;
+    /* 徽章橘黃色 */
+    --price-red: #e74c3c;
+    /* 價格橘紅色 */
+    --dark-gray: #333;
+    /* 深灰色文字 */
+    --medium-gray: #666;
+    /* 中灰色文字 */
+    --light-gray: #aaa;
+    /* 淺灰色文字 */
+    --border-gray: #e0e0e0;
+    /* 邊框灰色 */
+    --bg-light: #f8f9fa;
+    /* 頁面背景色 */
+    --white: #ffffff;
+    /* 白色 */
+    --card-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    /* 卡片陰影 */
+    --border-radius: 8px;
+    /* 圓角 */
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    /* 通用無襯線字體 */
+    margin: 0;
+    background-color: var(--bg-light);
+    color: var(--dark-gray);
+    display: flex;
+    /* 方便置中預覽 */
+    justify-content: center;
+    /* 方便置中預覽 */
+    align-items: center;
+    /* 方便置中預覽 */
+    min-height: 100vh;
+    /* 方便置中預覽 */
+}
+
+/* --- Homes For You 區塊 --- */
+.homes-for-you {
+    width: 100%;
+    max-width: 1200px;
+    /* 設置最大寬度 */
+    padding: 40px 15px;
+    /* 上下左右間距 */
+    box-sizing: border-box;
+    overflow: hidden;
+    /* 隱藏超出範圍的內容 */
+}
+
+/* --- 區塊標題 --- */
+.section-header {
+    text-align: center;
+    /* 文字置中 */
+    margin-bottom: 40px;
+    /* 與下方輪播的間距 */
+}
+
+.section-header h2 {
+    font-size: 2.5em;
+    /* 主標題字體大小 */
+    color: var(--dark-gray);
+    margin-bottom: 10px;
+}
+
+.section-header p {
+    font-size: 1.1em;
+    /* 副標題字體大小 */
+    color: var(--medium-gray);
+    margin-top: 0;
+}
+
+/* --- 輪播容器 --- */
+.carousel-container {
+    position: relative;
+    /* 作為導航按鈕定位的基準 */
+    padding: 0 40px;
+    /* 預留空間給導航按鈕 */
+}
+
+/* --- 導航按鈕 --- */
+.carousel-arrow {
+    position: absolute;
+    /* 絕對定位 */
+    top: 50%;
+    /* 垂直置中 */
+    transform: translateY(-70%);
+    /* 向上微調以視覺置中 (考慮卡片高度) */
+    background-color: var(--white);
+    border: 1px solid var(--border-gray);
+    border-radius: 50%;
+    /* 圓形 */
+    width: 45px;
+    height: 45px;
+    font-size: 1.2em;
+    /* 圖標大小 */
+    color: var(--medium-gray);
+    cursor: pointer;
+    /* 滑鼠指標 */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+    /* 過渡效果 */
+    z-index: 10;
+    /* 確保在卡片之上 */
+}
+
+.carousel-arrow:hover {
+    background-color: #f0f0f0;
+    color: var(--dark-gray);
+}
+
+.prev-arrow {
+    left: 0px;
+    /* 靠左 */
+}
+
+.next-arrow {
+    right: 0px;
+    /* 靠右 */
+}
+
+/* --- 卡片滾動區域 --- */
+.property-cards-wrapper {
+    overflow-x: auto;
+    /* 水平滾動 */
+    scrollbar-width: none;
+    /* 隱藏 Firefox 滾動條 */
+    -ms-overflow-style: none;
+    /* 隱藏 IE/Edge 滾動條 */
+    padding-bottom: 20px;
+    /* 為滾動條或陰影留空間 */
+    scroll-behavior: smooth;
+    /* 平滑滾動 */
+}
+
+.property-cards-wrapper::-webkit-scrollbar {
+    display: none;
+    /* 隱藏 Webkit (Chrome/Safari) 滾動條 */
+}
+
+/* --- 房產卡片列 --- */
+.property-cards-row {
+    display: flex;
+    /* 使用 Flexbox 排列卡片 */
+    gap: 30px;
+    /* 卡片間的間距 */
+    padding: 10px 0;
+    /* 上下留白，避免陰影被切 */
+    width: max-content;
+    /* 讓寬度自適應內容 */
+}
+
+/* --- 房產卡片 --- */
+.property-card {
+    background-color: var(--white);
+    border-radius: var(--border-radius);
+    box-shadow: var(--card-shadow);
+    overflow: hidden;
+    /* 確保圖片圓角 */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    flex-shrink: 0;
+    /* 防止卡片被壓縮 */
+    width: 350px;
+    /* 固定寬度，與假圖一致 */
+}
+
+.property-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+}
+
+/* --- 卡片圖片 --- */
+.card-image-container {
+    position: relative;
+}
+
+.card-image-container img {
+    width: 100%;
+    display: block;
+    /* 移除圖片下方多餘空間 */
+    height: auto;
+    /* 保持圖片比例 */
+}
+
+/* --- 徽章 --- */
+.badges {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    /* 預設在左上角 */
+    display: flex;
+    gap: 5px;
+    /* 多個徽章間的間距 */
+}
+
+.badge {
+    color: var(--white);
+    padding: 5px 12px;
+    border-radius: 4px;
+    font-size: 0.8em;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.badge-sale,
+.badge-rent {
+    background-color: var(--primary-green);
+}
+
+.badge-featured {
+    background-color: var(--primary-orange);
+}
+
+/* --- 卡片內容 --- */
+.card-content {
+    padding: 20px;
+}
+
+.card-title {
+    font-size: 1.3em;
+    margin-top: 0;
+    margin-bottom: 10px;
+    color: var(--dark-gray);
+}
+
+.card-price {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: var(--price-red);
+    margin-bottom: 15px;
+}
+
+.card-price .unit {
+    font-size: 0.7em;
+    color: var(--medium-gray);
+    font-weight: normal;
+    margin-left: 3px;
+}
+
+.card-location {
+    color: var(--medium-gray);
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.card-location i {
+    margin-right: 8px;
+    /* 圖標與文字間距 */
+    color: var(--light-gray);
+}
+
+/* --- 房產特性 --- */
+.card-features {
+    display: flex;
+    justify-content: space-between;
+    /* 均勻分佈 */
+    border-top: 1px solid var(--border-gray);
+    /* 頂部分隔線 */
+    padding-top: 15px;
+    color: var(--medium-gray);
+}
+
+.card-features span {
+    display: flex;
+    align-items: center;
+}
+
+.card-features i {
+    margin-right: 8px;
+    /* 圖標與文字間距 */
+    color: var(--light-gray);
+}
+
+/* --- 分頁指示器 --- */
+.carousel-dots {
+    text-align: center;
+    margin-top: 30px;
+    /* 與卡片的間距 */
+}
+
+.dot {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    background-color: var(--border-gray);
+    border-radius: 50%;
+    margin: 0 5px;
+    /* 圓點間距 */
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.dot.active {
+    background-color: var(--medium-gray);
+    /* 當前頁樣式 */
+}
+
+/* --- 響應式網頁設計 (RWD) --- */
+
+/* 預設 (小於 576px): 顯示 1 張卡片 (已透過固定寬度和滾動實現) */
+/* 調整卡片寬度以在小螢幕上更好看 */
+@media (max-width: 575.98px) {
+    .homes-for-you {
+        padding: 30px 5px;
+        /* 減少邊距 */
+    }
+
+    .carousel-container {
+        padding: 0 5px;
+        /* 減少邊距 */
+    }
+
+    .property-card {
+        width: 85%;
+        /* 讓卡片佔據更多寬度 */
+        margin: 0 auto;
+        /* 嘗試置中 */
+    }
+
+    .property-cards-row {
+        justify-content: center;
+        /* 嘗試置中單張卡片 */
+        gap: 15px;
+        /* 減少間距 */
+    }
+
+    .carousel-arrow {
+        width: 35px;
+        height: 35px;
+        font-size: 1em;
+        top: 40%;
+        /* 調整位置 */
+        transform: translateY(-50%);
+    }
+
+    .prev-arrow {
+        left: -5px;
+    }
+
+    .next-arrow {
+        right: -5px;
+    }
+
+    .section-header h2 {
+        font-size: 1.8em;
+    }
+
+    .section-header p {
+        font-size: 0.9em;
+    }
+
+    /* 在小螢幕隱藏導航按鈕，因為主要靠滑動 */
+    .carousel-arrow {
+        display: none;
+    }
+
+    .carousel-container {
+        padding: 0 15px;
+        /* 移除按鈕後調整回正常邊距 */
+    }
+}
+
+/* 中斷點 1 (>= 576px): 考慮顯示 2 張 (但 3 張寬度下滾動效果更好，此處僅微調) */
+@media (min-width: 576px) {
+    .property-card {
+        width: 320px;
+        /* 稍微調整寬度 */
+    }
+
+    .carousel-arrow {
+        display: block;
+        /* 確保按鈕可見 */
+    }
+
+    .carousel-container {
+        padding: 0 45px;
+        /* 確保有按鈕空間 */
+    }
+}
+
+
+/* 中斷點 2 (>= 992px): 舒適顯示 3 張 (已透過固定寬度和容器寬度實現) */
+@media (min-width: 992px) {
+    .property-card {
+        width: 350px;
+        /* 恢復原始設計寬度 */
+    }
+
+    /* 在大螢幕上，如果卡片少於3張，可以考慮讓它們不滾動並居中 */
+    /* 但此處我們保持滾動性以容納更多卡片 */
+}
+
+@media (min-width: 1200px) {
+    /* 如果視窗夠寬，且不希望滾動，可以移除 overflow 並調整 flex */
+    /* 但為了保持輪播感，我們維持滾動 */
+}

@@ -14,11 +14,10 @@ app = Flask(__name__)
 def index():
     return render_template("index.html.jinja2")
 
-@app.route("/classes")
-def classes():
-    # 從 URL 查詢參數獲取課程類型，預設為 '一般課程'
-    # 這與 classes.html.jinja2 中的 url_for('classes', kind=kind) 相對應
-    course_types = request.args.get('kind', '一般課程', type=str)
+@app.route("/classes",defaults={'course_types':'一般課程'})
+@app.route("/classes/<course_types>")
+def classes(course_types):
+    print(course_types)
     conn = psycopg2.connect(conn_string)
     with conn.cursor() as cur:
         sql = """

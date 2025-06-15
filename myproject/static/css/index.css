@@ -1,5 +1,3 @@
-/* 請將此區塊CSS手動加入到您的主要樣式表中 */
-
 /* 整體容器 */
 .event-section {
     font-family: Arial, sans-serif;
@@ -265,6 +263,10 @@
     /* 滑鼠懸停時卡片輕微上移 */
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
     /* 滑鼠懸停時陰影加深 */
+}
+
+.sport-card-item a{
+    text-decoration: none;
 }
 
 /* --- 卡片圖片樣式 --- */

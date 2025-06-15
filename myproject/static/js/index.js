@@ -10,3 +10,22 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 });
+
+const backToTopButton = document.getElementById("backToTop");
+
+  // 當滾動超過一定高度時顯示按鈕
+  window.onscroll = function () {
+    if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+      backToTopButton.style.display = "block";
+    } else {
+      backToTopButton.style.display = "none";
+    }
+  };
+
+   // 點擊按鈕時回到頂部
+  backToTopButton.addEventListener("click", function () {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+  });

@@ -1,0 +1,37 @@
+{% extends "layout/base.html.jinja2" %}
+{% block title %}
+職能發展學院-資料參考
+{% endblock %}
+
+{% block link %}
+    {{super()}}
+    <link rel="stylesheet" href="{{url_for('static', filename='css/table.css')}}">
+{% endblock%}
+
+{% block main %}
+<div class="table">
+  <h1>資料綜整數據</h1>
+  <div class = "even-table">
+    <table border="1" cellpadding="8" cellspacing="0">
+      <thead>
+        <tr>
+          <th>西元年</th>
+          <th>地區</th>
+          <th>每戶可支配所得</th>
+          <th>結婚率 (%)</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for item in items %}
+        <tr>
+          <td>{{ item['西元年'] }}</td>
+          <td>{{ item['區別'] }}</td>
+          <td>${{ "{:,.0f}".format(item['每戶可支配所得']) }}</td>
+          <td>{{ item['結婚率'] }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock %}

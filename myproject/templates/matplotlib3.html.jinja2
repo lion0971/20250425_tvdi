@@ -1,0 +1,21 @@
+{% extends "layout/base.html.jinja2" %}
+
+{% block title %}
+    隨機森林模型分析結果
+{% endblock %}
+
+{% block link %}
+    {{ super() }}
+    <!-- 如果你需要額外的 CSS，可以加在這裡 -->
+{% endblock %}
+
+{% block main %}
+    <h1 style="text-align: center;">結婚率與所得的預測分析</h1>
+
+    <section style="margin-bottom: 40px;">
+        <h2>圖表三：特徵重要性</h2>
+        <div>
+            {{ fig3_html | safe }}
+        </div>
+    </section>
+{% endblock %}

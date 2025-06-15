@@ -1,0 +1,21 @@
+.traffic-info{
+  margin:auto;
+  padding: 3%;
+  width: 80%;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.traffic-info ul{
+  margin-bottom: 50px;
+}
+
+.traffic-header{
+
+}
+
+
+.map-container{
+  text-align: center;
+}

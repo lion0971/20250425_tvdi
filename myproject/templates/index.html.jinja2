@@ -11,6 +11,23 @@
 
 {% block main %}
 
+<div class="overlay" id="popup">
+  <div class="popup-content">
+    <h2>歡迎來到專案發表</h2>
+    <p>成果僅供參考</p>
+    <button id="closePopup">關閉</butto到n>
+  </div>
+</div>
+
+{#<div class="overlay" id="popup">
+  <div class="popup-image">
+    <img src="{{url_for('static', filename='images/banner1.png')}}" alt="彈出圖片">
+  </div>
+</div>#}
+
+
+
+
 <div class="event-section">
     <h2 class="event-main-title">專題報告</h2>
     <p class="event-subtitle">台北市年份、地區、每戶可支配收入與結婚的相關性</p>
@@ -52,4 +69,5 @@
 
     </div>
 </section>
+<script src= "{{url_for('static', filename='js/index.js')}}"></script>
 {% endblock%}

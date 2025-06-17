@@ -18,7 +18,6 @@ plotly==6.1.2
 psycopg2-binary==2.9.10
 python-dotenv==1.1.0
 pytz==2025.2
-pywin32==304
 requests==2.32.3
 tzdata==2025.2
 urllib3==2.4.0

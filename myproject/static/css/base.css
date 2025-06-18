@@ -232,6 +232,10 @@ footer {
 
 /* --- Media Queries (RWD) --- */
 
+* {
+    box-sizing: border-box;
+}
+
 /* 手機版樣式 (768px 以下) */
 @media (max-width: 768px) {
     .site-header .container {

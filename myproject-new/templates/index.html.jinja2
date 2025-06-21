@@ -1,0 +1,73 @@
+{% extends "layout/base.html.jinja2" %}
+
+{% block title%}
+職能發展學院-首頁
+{% endblock%}
+
+{%block link%}
+{{super()}}
+<link rel="stylesheet" href="{{url_for('static', filename='css/index.css')}}">
+{%endblock%}
+
+{% block main %}
+
+<div class="overlay" id="popup">
+  <div class="popup-content">
+    <h2>歡迎來到專案發表</h2>
+    <p>成果僅供參考</p>
+    <button id="closePopup">關閉</butto到n>
+  </div>
+</div>
+
+{#<div class="overlay" id="popup">
+  <div class="popup-image">
+    <img src="{{url_for('static', filename='images/banner1.png')}}" alt="彈出圖片">
+  </div>
+</div>#}
+
+
+
+
+<div class="event-section">
+    <h2 class="event-main-title">專題報告</h2>
+    <p class="event-subtitle">台北市年份、地區、每戶可支配收入與結婚的相關性</p>
+
+    <div class="event-card">
+        <div class="event-image-container">
+            <span class="event-image-tag">機器學習輔助</span>
+            <img src="{{url_for('static', filename='images/index.png')}}" alt="錢示意圖" class="event-image">
+        </div>
+        <p class="event-caption">成果發表，僅供參考</p>
+    </div>
+</div>
+
+<section class="competition-info-section">
+  <h2 class="competition-title">參考資料</h2>
+  <p class="competition-subtitle">數據綜整DATA</p>
+
+  <div class="sports-grid-container">
+    <article class="sport-card-item">
+    <a href="https://tsis.dbas.gov.taipei/statis/webMain.aspx?k=tpemain">
+      <img src="{{url_for('static', filename='images/n1.png')}}" alt="射箭示意圖" class="sport-card-image">
+      <div class="sport-card-name">台北市統計資料庫查詢系統</div>
+      </a>
+    </article>
+
+    <article class="sport-card-item">
+    <a href="https://ca.gov.taipei/News_Content.aspx?n=8693DC9620A1AABF&sms=D19E9582624D83CB&s=C0E4FEB225C3666D">
+      <img src="{{url_for('static', filename='images/n2.png')}}" alt="田徑示意圖" class="sport-card-image">
+      <div class="sport-card-name">台北市政府民政局</div>
+    </a>
+    </article>
+
+    <article class="sport-card-item">
+    <a href="{{ url_for('table') }}">
+      <img src="{{url_for('static', filename='images/n3.png')}}" alt="水上運動示意圖" class="sport-card-image">
+      <div class="sport-card-name">統整資料表</div>
+    </a>
+    </article>
+
+    </div>
+</section>
+<script src= "{{url_for('static', filename='js/index.js')}}"></script>
+{% endblock%}

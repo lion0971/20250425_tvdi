@@ -1,0 +1,44 @@
+{% extends "layout/base.html.jinja2" %}
+
+{% block title %}
+    隨機森林模型分析結果
+{% endblock %}
+
+{% block link %}
+    {{ super() }}
+    <link rel="stylesheet" href="{{url_for('static', filename='css/matplotlib.css')}}">
+{% endblock %}
+
+{% block main %}
+    <h1 style="text-align: center;">隨機森林迴歸模型評估結果 (包含西元年和地區因素)</h1>
+
+    <section class="container1">
+        <div class="subcontainer">
+            <h2>模型評估指標</h2>
+            <p>R-squared: {{r2_rf}}</p>
+            <p>Mean Squared Error (MSE): {{mse_rf}}</P>
+            <p>Root Mean Squared Error (RMSE): {{rmse_rf}}</p>
+            <p>Mean Absolute Error (MAE): {{mae_rf}}</p>
+        </div>
+    </section>
+
+    <section>
+        <div style="margin-bottom: 40px;">
+            {{ fig1_html | safe }}
+        </div>
+    </section>
+
+    <section style="margin-bottom: 40px;">
+        
+        <div>
+            {{ fig2_html | safe }}
+        </div>
+    </section>
+
+    <section style="margin-bottom: 40px;">
+        
+        <div>
+            {{ fig3_html | safe }}
+        </div>
+    </section>
+{% endblock %}

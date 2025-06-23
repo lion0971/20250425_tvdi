@@ -1,0 +1,35 @@
+{% extends "layout/base.html.jinja2" %}
+
+{% block title %}
+    隨機森林模型分析結果
+{% endblock %}
+
+{% block link %}
+    {{ super() }}
+    <link rel="stylesheet" href="{{url_for('static', filename='css/predict_marriage.css')}}">
+{% endblock %}
+
+{% block main %}
+<div class="test-container">
+    <h1>結婚率預測</h1>
+    <form method="POST">
+        <label>請輸入介於2001 到 2023 年之間的西元年份：<input type="number" name="year" min="2001" max="2023" required></label><br>
+        <label>請輸入介於 900,000 到 1,800,000 之間當年度每戶可支配所得：<input type="number" name="income" step="0.01" min="900000" max="1800000" required></label><br>
+        <label>區別：
+            <select name="region" required>
+                {% for region in regions %}
+                <option value="{{ region }}">{{ region }}</option>
+                {% endfor %}
+            </select>
+        </label><br>
+        <p>使用隨機森林模型進行預測：</p>
+        <button class = "predict_button" type="submit">預測</button>
+    </form>
+    {% if prediction is not none %}
+        <h2>預測結婚率：{{ prediction }}%</h2>
+    {% endif %}
+    {% if error_msg %}
+        <p style="color:red;">{{ error_msg }}</p>
+    {% endif %}
+</div>
+{% endblock %}

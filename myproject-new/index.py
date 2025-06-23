@@ -176,6 +176,7 @@ def matplotlib():
 
     return render_template('matplotlib.html.jinja2', r2_rf=r2_rf, mse_rf=mse_rf, rmse_rf=rmse_rf, mae_rf=mae_rf, fig1_html=fig1_html, fig2_html=fig2_html, fig3_html=fig3_html)
 
+
 @app.route('/table')
 def table():
 
@@ -196,3 +197,76 @@ def table():
 
     except OperationalError as e:
         return f"資料庫連線錯誤：{e}"
+    
+@app.route('/predict_marriage', methods=['GET', 'POST'])
+def predict_marriage():
+    prediction = None
+    error_msg = None
+
+    # 先抓資料庫資料與訓練模型（和你matplotlib1/2/3裡的code一樣）
+    conn = psycopg2.connect(conn_string)
+    with conn.cursor() as cur:
+        sql = '''
+        SELECT 
+            "每戶可支配所得", 
+            "西元年", 
+            "區別", 
+            "結婚率"
+        FROM "結婚率資料";
+        '''
+        cur.execute(sql)
+        rows = cur.fetchall()
+        columns = [desc[0] for desc in cur.description]
+        df = pd.DataFrame(rows, columns=columns)
+
+    X = df[['每戶可支配所得', '西元年', '區別']]
+    y = df['結婚率']
+
+    onehotencoder = OneHotEncoder(handle_unknown='ignore')
+    preprocessor = ColumnTransformer(
+        transformers=[('onehot', onehotencoder, ['區別'])],
+        remainder='passthrough'
+    )
+
+    model_pipeline_rf = Pipeline(steps=[
+        ('preprocessor', preprocessor),
+        ('regressor', RandomForestRegressor(n_estimators=100, random_state=42))
+    ])
+
+    model_pipeline_rf.fit(X, y)
+
+    # 如果是POST，處理表單
+    if request.method == 'POST':
+        try:
+            year = int(request.form['year'])
+            region = request.form['region']
+            income = float(request.form['income'])
+
+            # 後端驗證年份範圍
+            if year < 2001 or year > 2023:
+                error_msg = "請輸入 2001 到 2023 年之間的年份"
+            elif income < 900000 or income > 1800000:
+                error_msg = "每戶可支配所得必須介於 900,000 到 1,800,000 之間"
+            else:
+                input_df = pd.DataFrame([{
+                    '每戶可支配所得': income,
+                    '西元年': year,
+                    '區別': region
+                }])
+
+                prediction = model_pipeline_rf.predict(input_df)[0]
+                prediction = round(prediction, 2)
+        except Exception as e:
+            error_msg = f"輸入格式錯誤或區別不存在：{e}"
+
+            # ★★★ 關鍵在這裡
+        if error_msg:
+            prediction = None
+
+    # 取得所有區別選單
+    regions = sorted(df['區別'].unique())
+
+    return render_template('predict_marriage.html.jinja2',
+                        prediction=prediction,
+                        error_msg=error_msg,
+                        regions=regions)

@@ -272,7 +272,7 @@
     /* 啟用 Flexbox 佈局 */
     flex-wrap: wrap;
     /* 允許項目換行 */
-    gap: 20px;
+    gap: 50px;
     /* 卡片之間的間距 (上下左右) */
     justify-content: center;
     /* 當卡片不足一行時，整體居中 */
@@ -280,15 +280,14 @@
 
 /* --- 運動項目卡片樣式 --- */
 .sport-card-item {
-    background-color: #ffffff;
-    /* 卡片背景色 */
-    border-radius: 12px;
-    /* 卡片圓角 */
+    background-color: #fbfbfb;
+    border-radius: 6px;
+    width: 100%;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
     /* 卡片陰影效果 */
     overflow: hidden;
     /* 確保圖片的圓角裁切正確，以及內容不超出 */
-    text-align: left;
+    text-align: center;
     /* 卡片內部文字靠左 (若名稱區塊需要) */
     transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
     /* 滑鼠懸停動畫效果 */
@@ -330,7 +329,7 @@
 
 /* --- 卡片運動名稱樣式 --- */
 .sport-card-name {
-    padding: 12px 15px;
+    padding: 12px 10px;
     /* 名稱區塊內邊距 */
     font-size: 18px;
     /* 運動名稱字體大小 */
